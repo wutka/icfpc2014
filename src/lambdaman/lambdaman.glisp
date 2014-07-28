@@ -1,0 +1,367 @@
+; This is the main for the standalone debugger
+;(defun main world-state unknown
+;    (step-function 0 (list (create-game-map) (create-game-lambdaman-status) (create-game-ghosts-status) (create-game-fruit-status))))
+;    (let ((distance-map (get-distance-map-for-loc (create-game-map) (cons 11 16))))
+;        distance-map))
+;     (filter-map (lambda v (not (atom? v))) (get-distance-map-for-loc (create-world-map) (cons 1 1))))
+;    (let ((distance-map (set-map-value (map-map make-dist-init (create-small-map)) (cons 0 0) (cons 1 1))))
+;       (get-map-value (do-first-dist-level (set-map-value distance-map (cons 0 0) (cons 1 1))) (cons 1 2))))
+;       (map (lambda x (get-adjacent-locs-and-dirs distance-map x)) (get-locs-with-distance distance-map 0))))
+;       (get-adjacent-locs-and-dirs (map-map make-dist-init (create-world-map)) (cons 1 1))))
+
+;        (get-adjacent-locs-and-dirs distance-map (cons 1 1))))
+;    (let ((locs-to-update (get-locs-with-distance 0)))
+;       (get-locs-with-distance (set-map-value distance-map 0 (cons 1 1)) 0)))
+;        (map cdrx (filter-map d0 (set-map-value distance-map 0 (cons 1 1))))))
+;        (get-distance-map-for-loc (create-small-map) (cons 1 5))))
+
+;(defun d0 d (= d 0))
+;   
+;(defun create-small-map
+;    '((0 0 0 0 0)
+;      (0 2 0 2 0)
+;      (0 3 4 2 0)
+;      (0 0 2 0 0)
+;      (0 0 0 0 0)))
+;
+;(defun create-world-map
+;    '((0 0 0 0 0 0 0)
+;      (0 2 0 2 3 2 0)
+;      (0 2 0 6 0 0 0)
+;      (0 3 2 6 2 4 0)
+;      (0 0 2 0 2 0 0)
+;      (0 2 2 0 5 2 0)
+;      (0 0 0 0 0 0 0)))
+
+;(defun create-game-map
+;    '((0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
+;      (0 2 2 2 2 2 2 2 2 2 2 0 2 2 2 2 2 2 2 2 2 2 0)
+;      (0 2 0 0 0 2 0 0 0 0 2 0 2 0 0 0 0 2 0 0 0 2 0)
+;      (0 3 0 0 0 2 0 0 0 0 2 0 2 0 0 0 0 2 0 0 0 3 0)
+;      (0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0)
+;      (0 2 0 0 0 2 0 2 0 0 0 0 0 0 0 2 0 2 0 0 0 2 0)
+;      (0 2 2 2 2 2 0 2 2 2 2 0 2 2 2 2 0 2 2 2 2 2 0)
+;      (0 0 0 0 0 2 0 0 0 0 1 0 1 0 0 0 0 2 0 0 0 0 0)
+;      (0 1 1 1 0 2 0 1 1 1 1 6 1 1 1 1 0 2 0 1 1 1 0)
+;      (0 0 0 0 0 2 0 1 0 0 0 1 0 0 0 1 0 2 0 0 0 0 0)
+;      (0 1 1 1 1 2 1 1 0 1 6 6 6 1 0 1 1 2 1 1 1 1 0)
+;      (0 0 0 0 0 2 0 1 0 0 0 0 0 0 0 1 0 2 0 0 0 0 0)
+;      (0 1 1 1 0 2 0 1 1 1 1 4 1 1 1 1 0 2 0 1 1 1 0)
+;      (0 0 0 0 0 2 0 1 0 0 0 0 0 0 0 1 0 2 0 0 0 0 0)
+;      (0 2 2 2 2 2 2 2 2 2 2 0 2 2 2 2 2 2 2 2 2 2 0)
+;      (0 2 0 0 0 2 0 0 0 0 2 0 2 0 0 0 0 2 0 0 0 2 0)
+;      (0 3 2 2 0 2 2 2 2 2 2 5 2 2 2 2 2 2 0 2 2 3 0)
+;      (0 0 0 2 0 2 0 2 0 0 0 0 0 0 0 2 0 2 0 2 0 0 0)
+;      (0 2 2 2 2 2 0 2 2 2 2 0 2 2 2 2 0 2 2 2 2 2 0)
+;      (0 2 0 0 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 0 2 0)
+;      (0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0)
+;      (0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)))
+
+;(defun create-lambdaman-status
+;    (list 0 (cons 1 5) 1 3 0))
+;
+;(defun create-ghosts-status
+;    (list 
+;        (list 0 (cons 2 4) 0)
+;        (list 0 (cons 1 4) 0)
+;        (list 0 (cons 5 5) 0)))
+;
+;(defun create-fruit-status
+;    0)
+
+;(defun create-game-lambdaman-status
+;    (list 0 (cons 11 16) 1 3 0))
+
+;(defun create-game-ghosts-status
+;    (list 
+;        (list 0 (cons 11 8) 3)
+;        (list 0 (cons 10 10) 0)
+;        (list 0 (cons 11 10) 1)
+;        (list 0 (cons 12 10) 3)))
+
+;(defun create-game-fruit-status
+;    0)
+;
+
+; This is the original main
+(defun main world-state unknown
+    (cons (create-initial-state world-state) step-function))
+
+
+(defun create-initial-state world-state
+    0)
+
+(defun break-with-value v (break))
+
+(defun is-true x (= x 1))
+(defun is-false x (= x 0))
+(defun not x (= x 0))
+
+(defun-tail any p l
+    (if (atom? l) 0
+        (if (p (car l)) 1
+            (recur any p (cdr l)))))
+
+(defun-tail all p l
+    (if (atom? l) 1
+        (if (p (car l)) (recur all p (cdr l)) 0)))
+
+(defun pair-eq p1 p2
+    (and (= (car p1) (car p2)) (= (cdr p1) (cdr p2))))
+
+(defun num-eq n1 n2 (= n1 n2))
+
+(defun-tail reverse-iter l rl
+    (if (atom? l) rl
+        (recur reverse-iter (cdr l) (cons (car l) rl))))
+
+(defun reverse l (reverse-iter l 0))
+
+(defun remove cmp-func l x
+    (if (atom? l) 0
+        (if (cmp-func x (car l)) (cdr l)
+            (cons (car l) (remove cmp-func (cdr l) x)))))
+
+(defun-tail contains cmp-func l x
+    (if (atom? l) 0
+        (if (cmp-func x (car l)) 1
+            (recur contains cmp-func (cdr l) x))))
+
+(defun remove-all cmp-func l x
+    (if (atom? l) 0
+        (if (cmp-func x (car l)) (remove-all (cdr l) cmp-func x)
+            (cons (car l) (remove-all cmp-func (cdr l) x)))))
+
+(defun-tail filter-iter p l rl
+    (if (atom? l) (reverse rl)
+        (if (p (car l)) (recur filter-iter p (cdr l) (cons (car l) rl))
+            (recur filter-iter p (cdr l) rl))))
+
+(defun filter p l (filter-iter p l 0))
+
+(defun-tail map-iter f l rl
+    (if (atom? l) (reverse rl)
+        (recur map-iter f (cdr l) (cons (f (car l)) rl))))
+
+(defun map f l (map-iter f l 0))
+
+(defun-tail foldl f s l
+    (if (atom? l) s
+        (recur foldl f (f s (car l)) (cdr l))))
+
+(defun-tail nth l n
+    (if (atom? l) l
+        (if (= n 0) (car l) (recur nth (cdr l) (- n 1)))))
+    
+(defun-tail length-iter l n
+    (if (atom? l) n
+        (recur length-iter (cdr l) (+ n 1))))
+
+(defun length l (length-iter l 0))
+
+(defun get-map-value world-map xy
+    (nth (nth world-map (cdr xy)) (car xy)))
+
+(defun next-square-offsets
+    (list (cons 0 -1) (cons 1 0) (cons 0 1) (cons -1 0)))
+
+(defun get-next-square-offset dir
+    (nth (next-square-offsets) dir))
+
+(defun get-next-dir dir
+    (nth (list 1 2 3 0) dir))
+
+(defun offset-loc loc offset
+    (cons (+ (car loc) (car offset)) (+ (cdr loc) (cdr offset))))
+
+(defun loc-from-dir loc dir
+    (offset-loc loc(nth (next-square-offsets) dir)))
+
+(defun get-adjacent-square world-map xy dir
+    (let ((x (car xy))
+          (y (cdr xy))
+          (offset (get-next-square-offset dir)))
+    (get-map-value world-map (offset-loc xy offset))))
+
+(defun has-ghost ghost-status curr-loc
+    (if (atom? ghost-status) 0
+        (let ((curr-ghost-loc (nth (car ghost-status) 1)))
+        (if (pair-eq curr-ghost-loc curr-loc)
+            1
+            (has-ghost (cdr ghost-status) curr-loc)))))
+
+(defun is-safe ghost-status curr-loc
+    (if (atom? ghost-status) 1
+        (let ((curr-ghost-loc (nth (car ghost-status) 1))
+              (curr-ghost-dir (nth (car ghost-status) 2)))
+            (if (pair-eq curr-ghost-loc curr-loc)
+                0
+                (if (pair-eq curr-loc (loc-from-dir curr-ghost-loc curr-ghost-dir))
+                    0
+                    (is-safe (cdr ghost-status) curr-loc))))))
+            
+
+(defun-tail prepend l rest
+    (if (atom? l) rest
+        (recur prepend (cdr l) (cons (car l) rest))))
+
+(defun-tail map-set-col-iter mr v x rl
+    (if (= x 0) (prepend rl (cons v (cdr mr)))
+        (recur map-set-col-iter (cdr mr) v (- x 1) (cons (car mr) rl))))
+
+(defun-tail map-set-row-iter m v x y rl
+    (if (= y 0) (prepend rl (cons (map-set-col-iter (car m) v x 0) (cdr m)))
+        (recur map-set-row-iter (cdr m) v x (- y 1) (cons (car m) rl))))
+
+(defun set-map-value m v xy (map-set-row-iter m v (car xy) (cdr xy) 0))
+
+(defun map-map-row p r y x
+    (if (atom? r) 0
+        (cons (p (car r) (cons x y)) (map-map-row p (cdr r) y (+ x 1)))))
+
+(defun map-map-rows p m y
+    (if (atom? m) 0
+        (cons (map-map-row p (car m) y 0) (map-map-rows p (cdr m) (+ y 1)))))
+
+(defun map-map p world-map (map-map-rows p world-map 0))
+
+(defun-tail filter-map-row p r l y x
+    (if (atom? r) l
+        (if (p (car r) (cons x y)) (recur filter-map-row p (cdr r) (cons (cons (car r) (cons x y)) l) y (+ x 1))
+            (recur filter-map-row p (cdr r) l y (+ x 1)))))
+
+(defun-tail filter-map-rows p m l y
+    (if (atom? m) l
+        (recur filter-map-rows p (cdr m) (filter-map-row p (car m) l y 0) (+ y 1))))
+
+(defun filter-map p world-map (filter-map-rows p world-map 0 0))
+
+(defun make-dist-init p xy
+    (if (= p 0) -1 (cons 99999 -1)))
+
+(defun get-distance-map-for-loc world-map loc
+    (let ((distance-map (map-map make-dist-init world-map)))
+        (update-map-distances
+            (do-first-dist-level (set-map-value distance-map (cons 0 0) loc) '()) 1)))
+
+(defun get-distance-map-for-loc-avoid-ghosts world-map ghost-status loc
+    (let ((distance-map (map-map make-dist-init world-map)))
+        (update-map-distances
+            (do-first-dist-level (set-map-value distance-map (cons 0 0) loc) ghost-status) 1)))
+
+(defun do-first-dist-level distance-map ghost-status
+    (let ((locs-to-update (get-locs-with-distance distance-map 0)))
+        (if (atom? locs-to-update) distance-map
+            (store-depth-and-dir distance-map ghost-status locs-to-update))))
+
+; Store the depth and dir for each loc adjacent to the locations in locs
+(defun store-depth-and-dir distance-map ghost-status locs
+    (foldl (lambda (dm l) (store-depth-and-dir-for-loc dm ghost-status l)) distance-map locs))
+
+; Store the depth and dir for each loc adjacement to loc
+(defun store-depth-and-dir-for-loc distance-map ghost-status loc
+    (let ((adjacent-locs-and-dirs (filter (lambda l (is-safe ghost-status (cdr l))) (get-adjacent-locs-and-dirs distance-map loc))))
+        (foldl (lambda (dm ld) (update-map-with-depth-and-dir dm ld 1)) distance-map adjacent-locs-and-dirs)))
+
+; Update the map with a depth and dir
+(defun update-map-with-depth-and-dir distance-map loc-dir depth
+    (let ((map-value (get-map-value distance-map (cdr loc-dir))))
+        (if (> (car map-value) depth) (set-map-value distance-map (cons depth (car loc-dir)) (cdr loc-dir))
+            distance-map)))
+            
+(defun update-map-distances distance-map depth
+    (if (> depth 99) distance-map
+        (let ((locs-to-update (get-locs-with-distance distance-map depth))
+            (next-depth (+ depth 1)))
+            (if (atom? locs-to-update) distance-map
+                (update-map-distances (store-depth distance-map locs-to-update next-depth) next-depth)))))
+
+(defun store-depth distance-map locs depth
+    (foldl (lambda (dm l) (store-depth-for-loc dm l depth)) distance-map locs))
+
+(defun store-depth-for-loc distance-map loc depth
+    (let ((adjacent-locs (get-adjacent-locs distance-map loc))
+          (dir (cdr (get-map-value distance-map loc))))
+        (foldl (lambda (dm l) (update-map-with-depth dm l dir depth)) distance-map adjacent-locs)))
+
+(defun update-map-with-depth distance-map loc dir depth
+    (let ((map-value (get-map-value distance-map loc)))
+        (if (> (car map-value) depth) (set-map-value distance-map (cons depth dir) loc)
+            distance-map)))
+
+(defun cdrx x (cdr x))
+
+(defun get-values-with-distance distance-map depth
+    (filter-map (lambda (d l) (if (atom? d) 0 (= (car d) depth))) distance-map))
+
+(defun get-locs-with-distance distance-map depth
+    (map cdrx (get-values-with-distance distance-map depth)))
+
+(defun get-adjacent-locs distance-map loc
+    (let ((square-offsets (next-square-offsets)))
+        (filter (lambda l (not (atom? (get-map-value distance-map l))))
+            (map (lambda d (offset-loc loc (nth square-offsets d))) '(0 1 2 3)))))
+
+(defun get-adjacent-locs-and-dirs distance-map loc
+    (let ((square-offsets (next-square-offsets)))
+        (filter (lambda l (not (atom? (get-map-value distance-map (cdr l)))))
+            (map (lambda d (cons d (offset-loc loc (nth square-offsets d)))) '(0 1 2 3)))))
+
+(defun has-yummy world-map fruit-status loc
+    (let ((square (get-map-value world-map loc)))
+        (or (= square 2)
+            (or (= square 3)
+                (and (= square 4) fruit-status)))))
+
+(defun find-yummies world-map ghost-status fruit-status curr-loc dirs
+    (filter (lambda d (has-yummy world-map fruit-status (loc-from-dir curr-loc d))) dirs))
+
+(defun pick-a-move dirs (car dirs))
+
+(defun find-best-move world-map ghost-status fruit-status curr-loc dirs
+    (let ((yummy-list (find-yummies world-map ghost-status fruit-status curr-loc dirs)))
+        (if (atom? yummy-list)
+            (pick-a-move dirs)
+            (car yummy-list))))
+
+(defun has-fruit world-map fruit-status distance-info loc
+    (if (atom? distance-info) 0
+        (let ((map-value (get-map-value world-map loc)))
+            (if (= map-value 2) 1
+                (if (= map-value 3) 1
+                    (if (and (= map-value 4) (>= fruit-status (car distance-info))) 1 0))))))
+            
+(defun find-closest curr-min v
+    (if (< (car (car v)) (car (car curr-min))) v curr-min))
+
+(defun find-closest-edible world-map distance-map fruit-status
+    (let ((food-locations (filter-map (lambda (v l) (has-fruit world-map fruit-status v l)) distance-map)))
+        (if (atom? food-locations) 0
+            (foldl find-closest (car food-locations) (cdr food-locations)))))
+
+(defun compute-next-dir world-map ghost-status fruit-status curr-loc curr-dir default-dir distance-map
+    (let ((closest-edible (find-closest-edible world-map distance-map fruit-status)))
+        (if (atom? closest-edible) default-dir (cdr (car closest-edible)))))
+
+(defun get-lambdaman-loc lambdaman-status
+    (nth lambdaman-status 1))
+
+(defun get-lambdaman-dir lambdaman-status
+    (nth lambdaman-status 2))
+
+(defun step-function ai-state world-state
+    (let ((map-width (length (car world-state)))
+          (map-height (length world-state))
+          (world-map (car world-state)) 
+          (lambdaman-status (nth world-state 1))
+          (ghost-status (nth world-state 2))
+          (fruit-status (nth world-state 3))
+          (last-default-dir ai-state))
+    (cons (get-next-dir last-default-dir) (compute-next-dir 
+                world-map
+                ghost-status
+                fruit-status
+                (get-lambdaman-loc lambdaman-status)
+                (get-lambdaman-dir lambdaman-status)
+                last-default-dir
+                (get-distance-map-for-loc-avoid-ghosts world-map (if (> (car lambdaman-status) 1) '() ghost-status) (get-lambdaman-loc lambdaman-status))))))
